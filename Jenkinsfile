@@ -1,29 +1,23 @@
-pipeline {
-    agent any
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('Test') {
-            steps {
-                bat 'echo Fail!'
-                bat 'exit 1'
+        stage('Build') { 
+            steps { 
+                echo 'Building stage' 
             }
         }
-    }
-    post {
-        always {
-            echo 'This will always run'
+        stage('Test'){
+            steps {
+                echo 'Testing stage' 
+            }
         }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
+        stage('Deploy') {
+            steps {
+                echo 'Deploying stage'
+            }
         }
     }
 }
