@@ -3,13 +3,14 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat 'echo "Fail!"; exit 1'
+                bat 'echo Fail!'
+                bat 'exit 1'
             }
         }
     }
     post {
         always {
-            echo 'This will always run'
+            bat 'echo This will always run'
         }
         success {
             echo 'This will run only if successful'
