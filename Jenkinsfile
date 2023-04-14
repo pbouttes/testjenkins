@@ -10,7 +10,7 @@ pipeline {
     }
     post {
         always {
-            bat 'echo This will always run'
+            echo 'This will always run'
         }
         success {
             echo 'This will run only if successful'
